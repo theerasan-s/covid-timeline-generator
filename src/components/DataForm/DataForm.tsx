@@ -1,26 +1,35 @@
 import React from 'react'
 
-import { Row, Col, Form, Input, Select, DatePicker } from 'antd'
+import { Row, Col, Form, Input, Select, DatePicker, FormInstance } from 'antd'
 import { Container, FormTitle, FormItemLabel, SubmitButton } from './styled'
 import { PlusOutlined } from '@ant-design/icons'
 
+type Props = {
+  form: FormInstance<any>
+  onSubmit: () => void
+}
+
 const genders = ['ชาย', 'หญิง']
 
-const DataForm = () => {
+const DataForm = ({ form, onSubmit }: Props) => {
   const { Option } = Select
   const { TextArea } = Input
 
   return (
     <div>
-      <Form layout="vertical">
+      <Form layout="vertical" form={form} onFinish={onSubmit}>
         <Container>
           <Row>
             <FormTitle>ข้อมูลผู้ป่วย</FormTitle>
           </Row>
           <Row gutter={[16, 8]}>
             <Col span={10}>
-              <Form.Item label={<FormItemLabel>เพศ</FormItemLabel>}>
-                <Select defaultValue={genders[0]}>
+              <Form.Item
+                name="gender"
+                label={<FormItemLabel>เพศ</FormItemLabel>}
+                initialValue={genders[0]}
+              >
+                <Select>
                   {genders.map((gender, index) => (
                     <Option value={gender} key={index}>
                       {gender}
@@ -30,14 +39,17 @@ const DataForm = () => {
               </Form.Item>
             </Col>
             <Col span={14}>
-              <Form.Item label={<FormItemLabel>อายุ</FormItemLabel>}>
+              <Form.Item name="age" label={<FormItemLabel>อายุ</FormItemLabel>}>
                 <Input />
               </Form.Item>
             </Col>
           </Row>
           <Row>
             <Col span={24}>
-              <Form.Item label={<FormItemLabel>อาชีพ</FormItemLabel>}>
+              <Form.Item
+                name="job"
+                label={<FormItemLabel>อาชีพ</FormItemLabel>}
+              >
                 <Input />
               </Form.Item>
             </Col>
@@ -49,7 +61,10 @@ const DataForm = () => {
           </Row>
           <Row>
             <Col span={24}>
-              <Form.Item label={<FormItemLabel>วันเวลา</FormItemLabel>}>
+              <Form.Item
+                name="timeline"
+                label={<FormItemLabel>วันเวลา</FormItemLabel>}
+              >
                 <DatePicker
                   showTime={{ format: 'HH:mm' }}
                   style={{ width: '100%' }}
@@ -57,7 +72,10 @@ const DataForm = () => {
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label={<FormItemLabel>รายละเอียด</FormItemLabel>}>
+              <Form.Item
+                name="description"
+                label={<FormItemLabel>รายละเอียด</FormItemLabel>}
+              >
                 <TextArea rows={5} />
               </Form.Item>
             </Col>
