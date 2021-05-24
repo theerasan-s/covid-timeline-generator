@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import './App.css'
 import DataForm from './components/DataForm/DataForm'
 import TimelineCard from './components/TimelineCard/TimelineCard'
-import { Row, Col, Input } from 'antd'
+import { Row, Col } from 'antd'
 import useFormAction from './hooks/useFormAction'
 import { covidData } from './datatypes/formDatatypes'
 
@@ -12,7 +12,8 @@ const App = () => {
   const localData = localStorage.getItem('covid-generator') || 'null'
   const formData: covidData = JSON.parse(localData)
 
-  const { form, generatedTimeline, submitData } = useFormAction(formData)
+  const { form, generatedTimeline, submitData, onDelete } =
+    useFormAction(formData)
 
   return (
     <>
@@ -23,7 +24,10 @@ const App = () => {
 
         {generatedTimeline ? (
           <Col xs={{ span: 24 }} md={{ span: 14 }}>
-            <TimelineCard timelineData={generatedTimeline} />
+            <TimelineCard
+              timelineData={generatedTimeline}
+              onDelete={onDelete}
+            />
           </Col>
         ) : null}
       </Row>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 
 import { useForm } from 'antd/lib/form/Form'
 import { covidData, action, timeline } from '../datatypes/formDatatypes'
@@ -125,9 +125,36 @@ export default function useFormAction(covidData: covidData) {
       job: submitedForm.job,
       timeline: newTimelineList,
     }
+
     localStorage.setItem('covid-generator', JSON.stringify(newData))
     return setTimeline(newData)
   }
 
-  return { form, generatedTimeline, submitData }
+  const onDelete = (timelineDate: string, time: string) => () => {
+    const newTimeline = [...generatedTimeline.timeline]
+    const newData = { ...generatedTimeline }
+
+    const dateIndex = generatedTimeline.timeline.findIndex(
+      (timeline) => timeline.date === timelineDate
+    )
+    const updatedAction = generatedTimeline.timeline[dateIndex].action.filter(
+      (action) => action.time !== time
+    )
+
+    if (updatedAction.length === 0) {
+      newTimeline.splice(dateIndex, 1)
+    } else {
+      const newTimelineObject: timeline = {
+        date: generatedTimeline.timeline[dateIndex].date,
+        action: updatedAction,
+      }
+
+      newTimeline[dateIndex] = newTimelineObject
+    }
+
+    newData.timeline = newTimeline
+    return setTimeline(newData)
+  }
+
+  return { form, generatedTimeline, submitData, onDelete }
 }

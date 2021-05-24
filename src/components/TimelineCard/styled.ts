@@ -77,6 +77,7 @@ export const CovidTimeline = styled(Timeline)`
 export const DeleteButton = styled(Button)`
   position: absolute;
   left: calc(100% - 24px);
+  top: 0;
   background-color: transparent;
   border: none;
   color: white;

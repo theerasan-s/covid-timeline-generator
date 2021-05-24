@@ -18,9 +18,10 @@ import {
 
 type Props = {
   timelineData: covidData
+  onDelete: (date: string, time: string) => () => void
 }
 
-const TimelineCard = ({ timelineData }: Props) => {
+const TimelineCard = ({ timelineData, onDelete }: Props) => {
   return (
     <Container>
       <Row gutter={[0, 16]}>
@@ -73,6 +74,7 @@ const TimelineCard = ({ timelineData }: Props) => {
                         shape="circle"
                         icon={<CloseOutlined />}
                         size="small"
+                        onClick={onDelete(timeline.date, action.time)}
                       />
                     </EventBlock>
                   ))}
