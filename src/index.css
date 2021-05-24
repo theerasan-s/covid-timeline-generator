@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Prompt&display=swap&fbclid=IwAR24LG-7XDbZhsIRwR1uto588nzFD67NhJEtsu96w7yUdisBNEIcGHSAyRA');
 
 body {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
+  background-color: #012d5e;
   font-family: 'Prompt', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

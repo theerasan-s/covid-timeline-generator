@@ -8,7 +8,7 @@ export default function useFormAction(covidData: covidData) {
   const [generatedTimeline, setTimeline] = useState(covidData)
 
   const submitData = () => {
-    const submitedForm = form.getFieldsValue([
+    const submittedForm = form.getFieldsValue([
       'gender',
       'age',
       'job',
@@ -16,20 +16,32 @@ export default function useFormAction(covidData: covidData) {
       'description',
     ])
 
-    const date = submitedForm.timeline.format('DD/MM/YYYY')
-    const time = submitedForm.timeline.format('HH:mm')
-    console.log(typeof submitedForm.age)
+    const date = submittedForm.timeline.format('DD/MM/YYYY')
+    const time = submittedForm.timeline.format('HH:mm')
+    const age =
+      typeof submittedForm.age == 'undefined'
+        ? undefined
+        : submittedForm.age.trim().length === 0
+        ? undefined
+        : submittedForm.age
+
+    const job =
+      typeof submittedForm.job == 'undefined'
+        ? undefined
+        : submittedForm.job.trim().length === 0
+        ? undefined
+        : submittedForm.job
 
     if (generatedTimeline === null) {
       const timeline = {
         date: date,
-        action: [{ time: time, event: [submitedForm.description] }],
+        action: [{ time: time, event: [submittedForm.description] }],
       }
 
       const newData = {
-        gender: submitedForm.gender,
-        age: submitedForm.age,
-        job: submitedForm.job,
+        gender: submittedForm.gender,
+        age: age,
+        job: job,
         timeline: [timeline],
       }
       localStorage.setItem('covid-generator', JSON.stringify(newData))
@@ -44,7 +56,7 @@ export default function useFormAction(covidData: covidData) {
     if (timelineIndex < 0) {
       const timeline = {
         date: date,
-        action: [{ time: time, event: [submitedForm.description] }],
+        action: [{ time: time, event: [submittedForm.description] }],
       }
 
       const newTimeline = [...generatedTimeline.timeline, timeline]
@@ -67,9 +79,9 @@ export default function useFormAction(covidData: covidData) {
       })
 
       const newData = {
-        gender: submitedForm.gender,
-        age: submitedForm.age,
-        job: submitedForm.job,
+        gender: submittedForm.gender,
+        age: age,
+        job: job,
         timeline: newTimeline,
       }
 
@@ -87,7 +99,7 @@ export default function useFormAction(covidData: covidData) {
     if (foundActionIndex < 0) {
       const newActionObject: action = {
         time: time,
-        event: [submitedForm.description],
+        event: [submittedForm.description],
       }
       const newTimelineObject: timeline = {
         date: date,
@@ -104,9 +116,9 @@ export default function useFormAction(covidData: covidData) {
       timeline[timelineIndex] = newTimelineObject
 
       const newData = {
-        gender: submitedForm.gender,
-        age: submitedForm.age,
-        job: submitedForm.job,
+        gender: submittedForm.gender,
+        age: age,
+        job: job,
         timeline: timeline,
       }
 
@@ -116,14 +128,14 @@ export default function useFormAction(covidData: covidData) {
 
     // found time and date
 
-    foundDate.action[foundActionIndex].event.push(submitedForm.description)
+    foundDate.action[foundActionIndex].event.push(submittedForm.description)
     const newTimelineList = generatedTimeline.timeline
     newTimelineList[timelineIndex] = foundDate
 
     const newData = {
-      gender: submitedForm.gender,
-      age: submitedForm.age,
-      job: submitedForm.job,
+      gender: submittedForm.gender,
+      age: age,
+      job: job,
       timeline: newTimelineList,
     }
 

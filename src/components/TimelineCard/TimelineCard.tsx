@@ -35,7 +35,7 @@ const TimelineCard = ({ timelineData, onDelete }: Props) => {
           <PatientContainer>
             <PatientInformation>
               <Text size={24}>{`ผู้ป่วย${timelineData.gender} อายุ  ${
-                timelineData.age.length === 0
+                typeof timelineData.age == 'undefined'
                   ? 'ไม่ระบุ'
                   : `${timelineData.age} ปี `
               }`}</Text>
