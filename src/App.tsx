@@ -7,6 +7,14 @@ import TimelineCard from './components/TimelineCard/TimelineCard'
 import { Row, Col } from 'antd'
 import useFormAction from './hooks/useFormAction'
 import { covidData } from './datatypes/formDatatypes'
+import {
+  Container,
+  Text,
+  TitleContainer,
+  FormContainer,
+  TimelineContainer,
+  YELLOW,
+} from './styled'
 
 const App = () => {
   const localData = localStorage.getItem('covid-generator') || 'null'
@@ -16,22 +24,38 @@ const App = () => {
     useFormAction(formData)
 
   return (
-    <>
-      <Row>
-        <Col xs={{ span: 24 }} md={{ span: 10 }}>
-          <DataForm form={form} onSubmit={submitData} />
+    <Container>
+      <Row justify="center">
+        <Col
+          xs={{ span: 24 }}
+          md={{ span: 24, push: 1 }}
+          lg={{ span: 24, push: 1 }}
+        >
+          <TitleContainer>
+            <Text size={24} color={YELLOW}>
+              COVID Timeline Generator
+            </Text>
+          </TitleContainer>
+        </Col>
+
+        <Col xs={{ span: 24 }} md={{ span: 9 }} lg={{ span: 9 }}>
+          <FormContainer>
+            <DataForm form={form} onSubmit={submitData} />
+          </FormContainer>
         </Col>
 
         {generatedTimeline ? (
-          <Col xs={{ span: 24 }} md={{ span: 14 }}>
-            <TimelineCard
-              timelineData={generatedTimeline}
-              onDelete={onDelete}
-            />
+          <Col xs={{ span: 24 }} md={{ span: 13 }} lg={{ span: 13 }}>
+            <TimelineContainer>
+              <TimelineCard
+                timelineData={generatedTimeline}
+                onDelete={onDelete}
+              />
+            </TimelineContainer>
           </Col>
         ) : null}
       </Row>
-    </>
+    </Container>
   )
 }
 

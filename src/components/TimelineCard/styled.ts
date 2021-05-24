@@ -2,8 +2,9 @@ import styled from 'styled-components'
 import { Timeline, Button } from 'antd'
 
 export const YELLOW = '#ffc107'
-const LIGHTBLUE = '#34577e'
-const MIDBLUE = ' #234973'
+export const LIGHTBLUE = '#34577e'
+export const MIDBLUE = ' #234973'
+export const GREY = '#bbc7d4'
 
 interface TextProps {
   size?: number
@@ -14,8 +15,6 @@ interface TextProps {
 export const Container = styled.div`
   border: 1px solid ${YELLOW};
   text-align: center;
-  margin: 8px 8px 0 8px;
-  /* padding-right: 1000px; */
 `
 
 export const PatientContainer = styled.div`
@@ -51,10 +50,8 @@ export const EventBlock = styled.div`
   position: relative;
   background-color: ${LIGHTBLUE};
   min-height: 44px;
-
   padding-left: 20px;
   margin-top: 8px;
-
   border-radius: 10px;
 
   ::before {

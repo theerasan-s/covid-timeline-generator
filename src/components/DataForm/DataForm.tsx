@@ -16,80 +16,97 @@ const DataForm = ({ form, onSubmit }: Props) => {
   const { TextArea } = Input
 
   return (
-    <div>
-      <Form layout="vertical" form={form} onFinish={onSubmit}>
-        <Container>
-          <Row>
-            <FormTitle>ข้อมูลผู้ป่วย</FormTitle>
-          </Row>
-          <Row gutter={[16, 8]}>
-            <Col span={10}>
-              <Form.Item
-                name="gender"
-                label={<FormItemLabel>เพศ</FormItemLabel>}
-                initialValue={genders[0]}
-              >
-                <Select>
-                  {genders.map((gender, index) => (
-                    <Option value={gender} key={index}>
-                      {gender}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={14}>
-              <Form.Item name="age" label={<FormItemLabel>อายุ</FormItemLabel>}>
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <Form.Item
-                name="job"
-                label={<FormItemLabel>อาชีพ</FormItemLabel>}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <FormTitle>ข้อมูลไทม์ไลน์</FormTitle>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <Form.Item
-                name="timeline"
-                label={<FormItemLabel>วันเวลา</FormItemLabel>}
-              >
-                <DatePicker
-                  showTime={{ format: 'HH:mm' }}
-                  style={{ width: '100%' }}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item
-                name="description"
-                label={<FormItemLabel>รายละเอียด</FormItemLabel>}
-              >
-                <TextArea rows={5} />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item>
-                <SubmitButton icon={<PlusOutlined />} htmlType="submit">
-                  เพิ่มข้อมูล
-                </SubmitButton>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Container>
-      </Form>
-    </div>
+    <Form layout="vertical" form={form} onFinish={onSubmit}>
+      <Container>
+        <Row>
+          <FormTitle>ข้อมูลผู้ป่วย</FormTitle>
+        </Row>
+        <Row gutter={[16, 8]}>
+          <Col span={10}>
+            <Form.Item
+              name="gender"
+              label={<FormItemLabel>เพศ</FormItemLabel>}
+              initialValue={genders[0]}
+            >
+              <Select>
+                {genders.map((gender, index) => (
+                  <Option value={gender} key={index}>
+                    {gender}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={14}>
+            <Form.Item
+              name="age"
+              label={<FormItemLabel>อายุ</FormItemLabel>}
+              rules={[
+                {
+                  pattern: new RegExp('^[1-9][0-9]*$'),
+                  message: 'กรุณากรอกอายุให้ถูกต้อง เช่น 1 ปี, 12 ปี',
+                },
+              ]}
+            >
+              <Input maxLength={3} />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Form.Item name="job" label={<FormItemLabel>อาชีพ</FormItemLabel>}>
+              <Input />
+            </Form.Item>
+          </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row>
+          <FormTitle>ข้อมูลไทม์ไลน์</FormTitle>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Form.Item
+              name="timeline"
+              label={<FormItemLabel>วันเวลา</FormItemLabel>}
+              rules={[
+                {
+                  required: true,
+                  message: 'กรุณากรอก วันที่ และ เวลา',
+                },
+              ]}
+            >
+              <DatePicker
+                showTime={{ format: 'HH:mm' }}
+                format={'MM/DD/YYYY HH:mm'}
+                style={{ width: '100%' }}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item
+              name="description"
+              label={<FormItemLabel>รายละเอียด</FormItemLabel>}
+              rules={[
+                {
+                  required: true,
+                  message: 'กรุณากรอก รายละเอียด',
+                },
+              ]}
+            >
+              <TextArea rows={5} />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item>
+              <SubmitButton icon={<PlusOutlined />} htmlType="submit">
+                เพิ่มข้อมูล
+              </SubmitButton>
+            </Form.Item>
+          </Col>
+        </Row>
+      </Container>
+    </Form>
   )
 }
 

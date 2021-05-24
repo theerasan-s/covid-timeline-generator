@@ -18,6 +18,7 @@ export default function useFormAction(covidData: covidData) {
 
     const date = submitedForm.timeline.format('DD/MM/YYYY')
     const time = submitedForm.timeline.format('HH:mm')
+    console.log(typeof submitedForm.age)
 
     if (generatedTimeline === null) {
       const timeline = {

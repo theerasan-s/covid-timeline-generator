@@ -10,10 +10,11 @@ import {
   PatientContainer,
   PatientInformation,
   EventBlock,
-  YELLOW,
   CovidTimeline,
   TimelineText,
   DeleteButton,
+  YELLOW,
+  GREY,
 } from './styled'
 
 type Props = {
@@ -33,10 +34,16 @@ const TimelineCard = ({ timelineData, onDelete }: Props) => {
         <Col span={24}>
           <PatientContainer>
             <PatientInformation>
-              <Text
-                size={24}
-              >{`ผู้ป่วย${timelineData.gender} อายุ ${timelineData.age} ปี`}</Text>
-              <Text size={16}>{`อาชีพ ${timelineData.job}`}</Text>
+              <Text size={24}>{`ผู้ป่วย${timelineData.gender} อายุ  ${
+                timelineData.age.length === 0
+                  ? 'ไม่ระบุ'
+                  : `${timelineData.age} ปี `
+              }`}</Text>
+              <Text size={16}>{`อาชีพ ${
+                typeof timelineData.job == 'undefined'
+                  ? 'ไม่ระบุ'
+                  : `${timelineData.job}`
+              }`}</Text>
             </PatientInformation>
           </PatientContainer>
         </Col>
@@ -46,7 +53,14 @@ const TimelineCard = ({ timelineData, onDelete }: Props) => {
           <div>
             <CovidTimeline mode="left">
               {timelineData.timeline.map((timeline) => (
-                <Timeline.Item label={timeline.date} key={timeline.date}>
+                <Timeline.Item
+                  label={
+                    <TimelineText color={YELLOW} size={14}>
+                      {`${timeline.date}`}
+                    </TimelineText>
+                  }
+                  key={timeline.date}
+                >
                   {timeline.action.map((action) => (
                     <EventBlock>
                       <TimelineText color={YELLOW} size={14}>
@@ -58,16 +72,19 @@ const TimelineCard = ({ timelineData, onDelete }: Props) => {
                           index === action.event.length - 1 ? (
                             <TimelineText
                               size={14}
+                              color={GREY}
                             >{`${actionEvent}`}</TimelineText>
                           ) : (
                             <TimelineText
                               size={14}
+                              color={GREY}
                             >{`${actionEvent} และ `}</TimelineText>
                           )
                         )
                       ) : (
                         <TimelineText
                           size={14}
+                          color={GREY}
                         >{`${action.event[0]}`}</TimelineText>
                       )}
                       <DeleteButton

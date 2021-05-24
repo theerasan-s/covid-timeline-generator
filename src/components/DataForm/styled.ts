@@ -10,12 +10,12 @@ const MIDBLUE = ' #234973'
 const GREEN = '#27a74e'
 
 export const Container = styled.div`
-  background-color: ${LIGHTBLUE};
+  background-color: ${MIDBLUE};
   border-radius: 2px;
   padding-left: 8px;
   padding-right: 8px;
-  margin-top: 8px;
   margin-bottom: 8px;
+  margin-right: 200px;
 
   width: 100%;
 `
@@ -23,7 +23,6 @@ export const Container = styled.div`
 export const FormTitle = styled.span`
   color: ${GREEN};
   font-weight: bold;
-  margin: 8px 0;
 `
 
 export const FormItemLabel = styled.span`

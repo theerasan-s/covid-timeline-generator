@@ -125,8 +125,8 @@ code {
     .ant-timeline-item-left
     .ant-timeline-item-content {
     left: calc(28% - 4px);
-    width: calc(100% - 120px);
-    width: calc(100% - 120px);
+    width: calc(100% - 128px);
+
     text-align: left;
   }
 }
@@ -148,7 +148,7 @@ code {
     .ant-timeline-item-left
     .ant-timeline-item-content {
     left: calc(32% - 4px);
-    width: calc(100% - 120px);
+    width: calc(100% - 128px);
     text-align: left;
   }
 }
