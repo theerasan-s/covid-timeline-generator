@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Row, Col, Timeline } from 'antd'
+import { CloseOutlined } from '@ant-design/icons'
 import { covidData } from '../../datatypes/formDatatypes'
 
 import {
@@ -12,6 +13,7 @@ import {
   YELLOW,
   CovidTimeline,
   TimelineText,
+  DeleteButton,
 } from './styled'
 
 type Props = {
@@ -52,7 +54,7 @@ const TimelineCard = ({ timelineData }: Props) => {
 
                       {action.event.length > 0 ? (
                         action.event.map((actionEvent, index) =>
-                          index == action.event.length - 1 ? (
+                          index === action.event.length - 1 ? (
                             <TimelineText
                               size={14}
                             >{`${actionEvent}`}</TimelineText>
@@ -67,6 +69,11 @@ const TimelineCard = ({ timelineData }: Props) => {
                           size={14}
                         >{`${action.event[0]}`}</TimelineText>
                       )}
+                      <DeleteButton
+                        shape="circle"
+                        icon={<CloseOutlined />}
+                        size="small"
+                      />
                     </EventBlock>
                   ))}
                 </Timeline.Item>

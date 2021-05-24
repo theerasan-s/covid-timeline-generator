@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Timeline, TimelineProps } from 'antd'
+import { Timeline, Button } from 'antd'
 
 export const YELLOW = '#ffc107'
 const LIGHTBLUE = '#34577e'
@@ -68,39 +68,24 @@ export const EventBlock = styled.div`
     left: -12px;
     top: 10px;
   }
-
-  /* @media screen and (max-width: 1960px) {
-    max-width: 800px;
-  } 
-
-  @media screen and (max-width: 1440px) {
-    max-width: 600px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    max-width: 400px;
-  } */
-  /* 
-  @media screen and (max-width: 768px) {
-    max-width: 300px;
-  }
-
-  @media screen and (max-width: 576px) {
-    max-width: 260px;
-  }
-
-  @media screen and (max-width: 375px) {
-    max-width: 220px;
-  }
-  @media screen and (max-width: 360px) {
-    max-width: 200px;
-  }
-
-  @media screen and (max-width: 320px) {
-    max-width: 180px;
-  }  */
 `
 
 export const CovidTimeline = styled(Timeline)`
   width: auto;
+`
+
+export const DeleteButton = styled(Button)`
+  position: absolute;
+  left: calc(100% - 24px);
+  background-color: transparent;
+  border: none;
+  color: white;
+
+  :hover {
+    background-color: transparent;
+  }
+
+  :focus {
+    background-color: transparent;
+  }
 `
