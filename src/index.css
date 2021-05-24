@@ -47,8 +47,43 @@ code {
   .ant-timeline-item-left
   .ant-timeline-item-content {
   left: calc(24% - 4px);
-  width: calc(24% - 14px);
+  width: calc(100% - 120px);
   text-align: left;
+}
+
+@media screen and (max-width: 2560px) {
+  .ant-timeline.ant-timeline-label .ant-timeline-item-tail {
+    left: 20%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-head {
+    left: 20%;
+  }
+
+  .ant-timeline.ant-timeline-label
+    .ant-timeline-item-left
+    .ant-timeline-item-content {
+    left: calc(20% - 14px);
+    text-align: left;
+    width: 76%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .ant-timeline.ant-timeline-label .ant-timeline-item-tail {
+    left: 20%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-head {
+    left: 20%;
+  }
+
+  .ant-timeline.ant-timeline-label
+    .ant-timeline-item-left
+    .ant-timeline-item-content {
+    left: calc(20% - 14px);
+    text-align: left;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -68,7 +103,7 @@ code {
     .ant-timeline-item-left
     .ant-timeline-item-content {
     left: calc(24% - 4px);
-    width: calc(24% - 14px);
+    width: calc(100% - 120px);
     text-align: left;
   }
 }
@@ -90,7 +125,8 @@ code {
     .ant-timeline-item-left
     .ant-timeline-item-content {
     left: calc(28% - 4px);
-    width: calc(28% - 14px);
+    width: calc(100% - 120px);
+    width: calc(100% - 120px);
     text-align: left;
   }
 }
@@ -112,7 +148,7 @@ code {
     .ant-timeline-item-left
     .ant-timeline-item-content {
     left: calc(32% - 4px);
-    width: calc(32% - 14px);
+    width: calc(100% - 120px);
     text-align: left;
   }
 }

@@ -51,7 +51,7 @@ export const EventBlock = styled.div`
   position: relative;
   background-color: ${LIGHTBLUE};
   min-height: 44px;
-  width: 400px;
+
   padding-left: 20px;
   margin-top: 8px;
 
@@ -69,6 +69,18 @@ export const EventBlock = styled.div`
     top: 10px;
   }
 
+  /* @media screen and (max-width: 1960px) {
+    max-width: 800px;
+  } 
+
+  @media screen and (max-width: 1440px) {
+    max-width: 600px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    max-width: 400px;
+  } */
+  /* 
   @media screen and (max-width: 768px) {
     max-width: 300px;
   }
@@ -86,7 +98,7 @@ export const EventBlock = styled.div`
 
   @media screen and (max-width: 320px) {
     max-width: 180px;
-  }
+  }  */
 `
 
 export const CovidTimeline = styled(Timeline)`
