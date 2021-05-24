@@ -9,7 +9,6 @@ import { covidData } from './datatypes/formDatatypes'
 const App = () => {
   const localData = localStorage.getItem('covid-generator') || 'null'
   const formData: covidData = JSON.parse(localData)
-  console.log(typeof formData.timeline[0].date)
 
   const { submitData, form } = useFormAction(formData)
 

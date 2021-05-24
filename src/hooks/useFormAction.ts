@@ -1,9 +1,11 @@
+import { useState } from 'react'
+
 import { useForm } from 'antd/lib/form/Form'
-import moment from 'moment'
 import { covidData, action, timeline } from '../datatypes/formDatatypes'
 
 export default function useFormAction(covidData: covidData) {
   const [form] = useForm()
+  const [generatedTimeline, setTimeline] = useState(covidData)
 
   const submitData = () => {
     const submitedForm = form.getFieldsValue([
@@ -16,10 +18,8 @@ export default function useFormAction(covidData: covidData) {
 
     const date = submitedForm.timeline.format('DD/MM/YYYY')
     const time = submitedForm.timeline.format('HH:mm')
-    const test = new Date(time)
-    console.log(test)
 
-    if (covidData === null) {
+    if (generatedTimeline === null) {
       const timeline = {
         date: date,
         action: [{ time: time, event: [submitedForm.description] }],
@@ -31,25 +31,22 @@ export default function useFormAction(covidData: covidData) {
         job: submitedForm.job,
         timeline: [timeline],
       }
-      return localStorage.setItem('covid-generator', JSON.stringify(newData))
+      localStorage.setItem('covid-generator', JSON.stringify(newData))
+      return setTimeline(newData)
     }
 
-    const timelineIndex = covidData.timeline.findIndex(
+    const timelineIndex = generatedTimeline.timeline.findIndex(
       (timeline) => timeline.date === date
     )
 
     // date not found
     if (timelineIndex < 0) {
-      console.log('prove')
       const timeline = {
         date: date,
         action: [{ time: time, event: [submitedForm.description] }],
       }
 
-      console.log('coviddata', covidData)
-
-      const newTimeline = [...covidData.timeline, timeline]
-      console.log(newTimeline)
+      const newTimeline = [...generatedTimeline.timeline, timeline]
 
       newTimeline.sort((timeline1, timeline2) => {
         const splitDate1 = timeline1.date.split('/')
@@ -74,11 +71,12 @@ export default function useFormAction(covidData: covidData) {
         job: submitedForm.job,
         timeline: newTimeline,
       }
-      covidData = newData
-      return localStorage.setItem('covid-generator', JSON.stringify(newData))
+
+      localStorage.setItem('covid-generator', JSON.stringify(newData))
+      return setTimeline(newData)
     }
 
-    const foundDate = covidData.timeline[timelineIndex]
+    const foundDate = generatedTimeline.timeline[timelineIndex]
     const foundActionIndex = foundDate.action.findIndex(
       (action) => action.time === time
     )
@@ -94,8 +92,14 @@ export default function useFormAction(covidData: covidData) {
         date: date,
         action: [...foundDate.action, newActionObject],
       }
+      newTimelineObject.action.sort((action1, action2) => {
+        if (action1.time > action2.time) {
+          return 1
+        }
+        return -1
+      })
 
-      const timeline = covidData.timeline
+      const timeline = generatedTimeline.timeline
       timeline[timelineIndex] = newTimelineObject
 
       const newData = {
@@ -104,13 +108,15 @@ export default function useFormAction(covidData: covidData) {
         job: submitedForm.job,
         timeline: timeline,
       }
-      return localStorage.setItem('covid-generator', JSON.stringify(newData))
+
+      localStorage.setItem('covid-generator', JSON.stringify(newData))
+      return setTimeline(newData)
     }
 
     // found time and date
 
     foundDate.action[foundActionIndex].event.push(submitedForm.description)
-    const newTimelineList = covidData.timeline
+    const newTimelineList = generatedTimeline.timeline
     newTimelineList[timelineIndex] = foundDate
 
     const newData = {
@@ -119,8 +125,9 @@ export default function useFormAction(covidData: covidData) {
       job: submitedForm.job,
       timeline: newTimelineList,
     }
-    return localStorage.setItem('covid-generator', JSON.stringify(newData))
+    localStorage.setItem('covid-generator', JSON.stringify(newData))
+    return setTimeline(newData)
   }
 
-  return { form, submitData }
+  return { form, generatedTimeline, submitData }
 }
