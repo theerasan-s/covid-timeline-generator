@@ -15,7 +15,9 @@ export const Container = styled.div`
   padding-left: 8px;
   padding-right: 8px;
   margin-top: 8px;
-  max-width: 380px;
+  margin-bottom: 8px;
+
+  width: 100%;
 `
 
 export const FormTitle = styled.span`
@@ -29,10 +31,8 @@ export const FormItemLabel = styled.span`
 `
 export const SubmitButton = styled(Button)`
   background-color: ${Yellow};
-  color: white;
 
   :focus {
     background-color: ${Yellow};
-    color: white;
   }
 `

@@ -11,3 +11,108 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* .ant-timeline.ant-timeline-label .ant-timeline-item-label {
+  width: fit-content;
+}
+
+.ant-timeline-item-tail {
+  left: 20%;
+} */
+
+/* .ant-timeline.ant-timeline-label
+  .ant-timeline-item-left
+  .ant-timeline-item-content {
+  left: 20%;
+  width: calc(50% - 14px);
+  text-align: left;
+} */
+
+.ant-timeline.ant-timeline-label .ant-timeline-item-tail {
+  left: 20%;
+}
+
+.ant-timeline.ant-timeline-label .ant-timeline-item-head {
+  left: 20%;
+}
+
+.ant-timeline.ant-timeline-label .ant-timeline-item-label {
+  position: absolute;
+  top: -7.001px;
+  width: calc(20% - 12px);
+  text-align: right;
+}
+
+.ant-timeline.ant-timeline-label
+  .ant-timeline-item-left
+  .ant-timeline-item-content {
+  left: calc(24% - 4px);
+  width: calc(24% - 14px);
+  text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+  .ant-timeline.ant-timeline-label .ant-timeline-item-tail {
+    left: 24%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-head {
+    left: 24%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-label {
+    width: calc(24% - 12px);
+  }
+
+  .ant-timeline.ant-timeline-label
+    .ant-timeline-item-left
+    .ant-timeline-item-content {
+    left: calc(24% - 4px);
+    width: calc(24% - 14px);
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ant-timeline.ant-timeline-label .ant-timeline-item-tail {
+    left: 28%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-head {
+    left: 28%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-label {
+    width: calc(28% - 12px);
+  }
+
+  .ant-timeline.ant-timeline-label
+    .ant-timeline-item-left
+    .ant-timeline-item-content {
+    left: calc(28% - 4px);
+    width: calc(28% - 14px);
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .ant-timeline.ant-timeline-label .ant-timeline-item-tail {
+    left: 32%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-head {
+    left: 32%;
+  }
+
+  .ant-timeline.ant-timeline-label .ant-timeline-item-label {
+    width: calc(32% - 12px);
+  }
+
+  .ant-timeline.ant-timeline-label
+    .ant-timeline-item-left
+    .ant-timeline-item-content {
+    left: calc(32% - 4px);
+    width: calc(32% - 14px);
+    text-align: left;
+  }
+}
