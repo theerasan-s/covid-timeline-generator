@@ -12,18 +12,18 @@ import {
   DescriptionArea,
 } from './styled'
 import { PlusOutlined } from '@ant-design/icons'
+import { covidData } from '../../datatypes/formDatatypes'
 
 type Props = {
   form: FormInstance<any>
   onSubmit: () => void
+  covidData?: covidData
 }
 
 const genders = ['ชาย', 'หญิง']
+const { Option } = Select
 
-const DataForm = ({ form, onSubmit }: Props) => {
-  const { Option } = Select
-  const { TextArea } = Input
-
+const DataForm = ({ form, onSubmit, covidData }: Props) => {
   return (
     <Form layout="vertical" form={form} onFinish={onSubmit}>
       <Container>
@@ -35,7 +35,11 @@ const DataForm = ({ form, onSubmit }: Props) => {
             <Form.Item
               name="gender"
               label={<FormItemLabel>เพศ</FormItemLabel>}
-              initialValue={genders[0]}
+              initialValue={
+                covidData && typeof covidData.gender !== 'undefined'
+                  ? covidData.gender
+                  : genders[0]
+              }
             >
               <GenderSelect>
                 {genders.map((gender, index) => (
@@ -56,6 +60,11 @@ const DataForm = ({ form, onSubmit }: Props) => {
                   message: 'กรุณากรอกอายุให้ถูกต้อง เช่น 1 ปี, 12 ปี',
                 },
               ]}
+              initialValue={
+                covidData && typeof covidData.age !== 'undefined'
+                  ? covidData.age
+                  : ''
+              }
             >
               <FormInput maxLength={3} />
             </Form.Item>
@@ -63,7 +72,15 @@ const DataForm = ({ form, onSubmit }: Props) => {
         </Row>
         <Row>
           <Col span={24}>
-            <Form.Item name="job" label={<FormItemLabel>อาชีพ</FormItemLabel>}>
+            <Form.Item
+              name="job"
+              label={<FormItemLabel>อาชีพ</FormItemLabel>}
+              initialValue={
+                covidData && typeof covidData.job !== 'undefined'
+                  ? covidData.job
+                  : ''
+              }
+            >
               <FormInput />
             </Form.Item>
           </Col>

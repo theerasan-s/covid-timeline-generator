@@ -39,27 +39,44 @@ const App = () => {
           </TitleContainer>
         </Col>
 
-        <Col xs={{ span: 24 }} md={{ span: 9 }} lg={{ span: 9 }}>
-          <FormContainer>
-            <DataForm form={form} onSubmit={submitData} />
-          </FormContainer>
-        </Col>
-
         {generatedTimeline ? (
-          <Col xs={{ span: 24 }} md={{ span: 13 }} lg={{ span: 13 }}>
-            <TimelineContainer>
-              <TimelineCard
-                timelineData={generatedTimeline}
-                onDelete={onDelete}
-              />
-            </TimelineContainer>
-          </Col>
+          <>
+            <Col xs={{ span: 24 }} md={{ span: 9 }} lg={{ span: 9 }}>
+              <FormContainer>
+                <DataForm
+                  form={form}
+                  onSubmit={submitData}
+                  covidData={generatedTimeline}
+                />
+              </FormContainer>
+            </Col>
+
+            <Col xs={{ span: 24 }} md={{ span: 13 }} lg={{ span: 13 }}>
+              <TimelineContainer>
+                <TimelineCard
+                  timelineData={generatedTimeline}
+                  onDelete={onDelete}
+                />
+              </TimelineContainer>
+            </Col>
+          </>
         ) : (
-          <Col xs={{ span: 24 }} md={{ span: 13 }} lg={{ span: 13 }}>
-            <TimelineContainer>
-              <RequestTimelineCard />
-            </TimelineContainer>
-          </Col>
+          <>
+            <Col xs={{ span: 24 }} md={{ span: 9 }} lg={{ span: 9 }}>
+              <FormContainer>
+                <DataForm
+                  form={form}
+                  onSubmit={submitData}
+                  covidData={generatedTimeline}
+                />
+              </FormContainer>
+            </Col>
+            <Col xs={{ span: 24 }} md={{ span: 13 }} lg={{ span: 13 }}>
+              <TimelineContainer>
+                <RequestTimelineCard />
+              </TimelineContainer>
+            </Col>
+          </>
         )}
       </Row>
     </Container>

@@ -16,8 +16,10 @@ export default function useFormAction(covidData: covidData) {
       'description',
     ])
 
-    const date = submittedForm.timeline.format('DD/MM/YYYY')
-    const time = submittedForm.timeline.format('HH:mm')
+    const timeline: moment.Moment = submittedForm.timeline
+    const date = timeline.format('DD/MM/YYYY')
+    const time = timeline.format('HH:mm')
+
     const age =
       typeof submittedForm.age == 'undefined'
         ? undefined
@@ -44,8 +46,10 @@ export default function useFormAction(covidData: covidData) {
         job: job,
         timeline: [timeline],
       }
+
       localStorage.setItem('covid-generator', JSON.stringify(newData))
-      return setTimeline(newData)
+      setTimeline(newData)
+      return form.resetFields()
     }
 
     const timelineIndex = generatedTimeline.timeline.findIndex(
@@ -58,9 +62,7 @@ export default function useFormAction(covidData: covidData) {
         date: date,
         action: [{ time: time, event: [submittedForm.description] }],
       }
-
       const newTimeline = [...generatedTimeline.timeline, timeline]
-
       newTimeline.sort((timeline1, timeline2) => {
         const splitDate1 = timeline1.date.split('/')
         const splitDate2 = timeline2.date.split('/')
@@ -70,11 +72,9 @@ export default function useFormAction(covidData: covidData) {
         const date2 = new Date(
           `${splitDate2[1]}/${splitDate2[0]}/${splitDate2[2]}`
         )
-
         if (date1 > date2) {
           return 1
         }
-
         return -1
       })
 
@@ -86,14 +86,14 @@ export default function useFormAction(covidData: covidData) {
       }
 
       localStorage.setItem('covid-generator', JSON.stringify(newData))
-      return setTimeline(newData)
+      setTimeline(newData)
+      return form.resetFields()
     }
 
     const foundDate = generatedTimeline.timeline[timelineIndex]
     const foundActionIndex = foundDate.action.findIndex(
       (action) => action.time === time
     )
-
     // time not found
 
     if (foundActionIndex < 0) {
@@ -101,10 +101,12 @@ export default function useFormAction(covidData: covidData) {
         time: time,
         event: [submittedForm.description],
       }
+
       const newTimelineObject: timeline = {
         date: date,
         action: [...foundDate.action, newActionObject],
       }
+
       newTimelineObject.action.sort((action1, action2) => {
         if (action1.time > action2.time) {
           return 1
@@ -123,11 +125,11 @@ export default function useFormAction(covidData: covidData) {
       }
 
       localStorage.setItem('covid-generator', JSON.stringify(newData))
-      return setTimeline(newData)
+      setTimeline(newData)
+      return form.resetFields()
     }
 
     // found time and date
-
     foundDate.action[foundActionIndex].event.push(submittedForm.description)
     const newTimelineList = generatedTimeline.timeline
     newTimelineList[timelineIndex] = foundDate
@@ -140,7 +142,9 @@ export default function useFormAction(covidData: covidData) {
     }
 
     localStorage.setItem('covid-generator', JSON.stringify(newData))
-    return setTimeline(newData)
+
+    setTimeline(newData)
+    return form.resetFields()
   }
 
   const onDelete = (timelineDate: string, time: string) => () => {
