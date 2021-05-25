@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Row, Col, Form, Input, Select, DatePicker, FormInstance } from 'antd'
+import { Row, Col, Form, Select, DatePicker, FormInstance } from 'antd'
 import {
   Container,
   FormTitle,

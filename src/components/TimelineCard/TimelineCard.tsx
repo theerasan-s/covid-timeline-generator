@@ -54,15 +54,15 @@ const TimelineCard = ({ timelineData, onDelete }: Props) => {
             <CovidTimeline mode="left">
               {timelineData.timeline.map((timeline) => (
                 <Timeline.Item
+                  key={timeline.date}
                   label={
                     <TimelineText color={YELLOW} size={14}>
                       {`${timeline.date}`}
                     </TimelineText>
                   }
-                  key={timeline.date}
                 >
                   {timeline.action.map((action) => (
-                    <EventBlock>
+                    <EventBlock key={action.time}>
                       <TimelineText color={YELLOW} size={14}>
                         {`${action.time} `}
                       </TimelineText>
@@ -73,11 +73,13 @@ const TimelineCard = ({ timelineData, onDelete }: Props) => {
                             <TimelineText
                               size={14}
                               color={GREY}
+                              key={index}
                             >{`${actionEvent}`}</TimelineText>
                           ) : (
                             <TimelineText
                               size={14}
                               color={GREY}
+                              key={index}
                             >{`${actionEvent} และ `}</TimelineText>
                           )
                         )

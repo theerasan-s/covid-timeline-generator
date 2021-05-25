@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 
 import { useForm } from 'antd/lib/form/Form'
 import { covidData, action, timeline } from '../datatypes/formDatatypes'

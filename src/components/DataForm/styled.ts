@@ -37,7 +37,7 @@ export const FormTitle = styled.span`
 `
 
 export const FormItemLabel = styled.span`
-  color: white;
+  color: ${GREY};
 `
 
 export const FormInput = styled(Input)`

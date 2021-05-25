@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { Timeline, Button } from 'antd'
 
 export const YELLOW = '#ffc107'
@@ -21,8 +21,12 @@ export const PatientContainer = styled.div`
   background-color: ${YELLOW};
   border-radius: 50px;
   height: 100px;
-  width: 300px;
+  max-width: 300px;
   margin: 0 auto 18px auto;
+
+  @media screen and (max-width: 320px) {
+    max-width: 280px;
+  }
 `
 
 export const PatientInformation = styled.div`

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Timeline, Button } from 'antd'
 
 export const YELLOW = '#ffc107'
 export const LIGHTBLUE = '#34577e'
@@ -35,4 +34,5 @@ export const GuideContainer = styled.div`
   background-color: ${YELLOW};
   width: 50%;
   margin: 0 auto;
+  border-radius: 10px;
 `
