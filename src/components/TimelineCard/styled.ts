@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Timeline, Button } from 'antd'
 
 export const YELLOW = '#ffc107'
@@ -50,7 +50,7 @@ export const EventBlock = styled.div`
   position: relative;
   background-color: ${LIGHTBLUE};
   min-height: 44px;
-  padding-left: 20px;
+  padding: 0 20px;
   margin-top: 8px;
   border-radius: 10px;
 

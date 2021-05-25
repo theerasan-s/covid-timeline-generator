@@ -4,6 +4,7 @@ import 'antd/dist/antd.css'
 import './App.css'
 import DataForm from './components/DataForm/DataForm'
 import TimelineCard from './components/TimelineCard/TimelineCard'
+import RequestTimelineCard from './components/RequestTimelineCard/RequestTimelineCard'
 import { Row, Col } from 'antd'
 import useFormAction from './hooks/useFormAction'
 import { covidData } from './datatypes/formDatatypes'
@@ -53,7 +54,13 @@ const App = () => {
               />
             </TimelineContainer>
           </Col>
-        ) : null}
+        ) : (
+          <Col xs={{ span: 24 }} md={{ span: 13 }} lg={{ span: 13 }}>
+            <TimelineContainer>
+              <RequestTimelineCard />
+            </TimelineContainer>
+          </Col>
+        )}
       </Row>
     </Container>
   )

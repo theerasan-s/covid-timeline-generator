@@ -11,6 +11,7 @@ export const DARKBLUE = '#012d5e'
 
 export const Container = styled.div`
   background-color: ${DARKBLUE};
+  padding-bottom: 16px;
 `
 
 export const TitleContainer = styled.div`
@@ -33,11 +34,12 @@ export const FormContainer = styled.div`
   margin-right: 32px;
 
   @media screen and (max-width: 576px) {
-    margin: 0 8px;
+    margin: 0 8px 16px 8px;
   }
 `
 
 export const TimelineContainer = styled.div`
+  height: 100%;
   @media screen and (max-width: 576px) {
     margin: 0 8px;
   }

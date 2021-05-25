@@ -1,7 +1,16 @@
 import React from 'react'
 
 import { Row, Col, Form, Input, Select, DatePicker, FormInstance } from 'antd'
-import { Container, FormTitle, FormItemLabel, SubmitButton } from './styled'
+import {
+  Container,
+  FormTitle,
+  FormItemLabel,
+  SubmitButton,
+  TimelineContainer,
+  FormInput,
+  GenderSelect,
+  DescriptionArea,
+} from './styled'
 import { PlusOutlined } from '@ant-design/icons'
 
 type Props = {
@@ -28,13 +37,13 @@ const DataForm = ({ form, onSubmit }: Props) => {
               label={<FormItemLabel>เพศ</FormItemLabel>}
               initialValue={genders[0]}
             >
-              <Select>
+              <GenderSelect>
                 {genders.map((gender, index) => (
                   <Option value={gender} key={index}>
                     {gender}
                   </Option>
                 ))}
-              </Select>
+              </GenderSelect>
             </Form.Item>
           </Col>
           <Col span={14}>
@@ -48,19 +57,19 @@ const DataForm = ({ form, onSubmit }: Props) => {
                 },
               ]}
             >
-              <Input maxLength={3} />
+              <FormInput maxLength={3} />
             </Form.Item>
           </Col>
         </Row>
         <Row>
           <Col span={24}>
             <Form.Item name="job" label={<FormItemLabel>อาชีพ</FormItemLabel>}>
-              <Input />
+              <FormInput />
             </Form.Item>
           </Col>
         </Row>
       </Container>
-      <Container>
+      <TimelineContainer>
         <Row>
           <FormTitle>ข้อมูลไทม์ไลน์</FormTitle>
         </Row>
@@ -79,7 +88,7 @@ const DataForm = ({ form, onSubmit }: Props) => {
               <DatePicker
                 showTime={{ format: 'HH:mm' }}
                 format={'MM/DD/YYYY HH:mm'}
-                style={{ width: '100%' }}
+                style={{ width: '100%', color: 'white' }}
               />
             </Form.Item>
           </Col>
@@ -94,7 +103,7 @@ const DataForm = ({ form, onSubmit }: Props) => {
                 },
               ]}
             >
-              <TextArea rows={5} />
+              <DescriptionArea rows={5} />
             </Form.Item>
           </Col>
           <Col span={24}>
@@ -105,7 +114,7 @@ const DataForm = ({ form, onSubmit }: Props) => {
             </Form.Item>
           </Col>
         </Row>
-      </Container>
+      </TimelineContainer>
     </Form>
   )
 }

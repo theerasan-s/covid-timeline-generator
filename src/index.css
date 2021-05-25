@@ -14,21 +14,9 @@ code {
     monospace;
 }
 
-/* .ant-timeline.ant-timeline-label .ant-timeline-item-label {
-  width: fit-content;
+.ant-picker-input > input {
+  color: grey;
 }
-
-.ant-timeline-item-tail {
-  left: 20%;
-} */
-
-/* .ant-timeline.ant-timeline-label
-  .ant-timeline-item-left
-  .ant-timeline-item-content {
-  left: 20%;
-  width: calc(50% - 14px);
-  text-align: left;
-} */
 
 .ant-timeline.ant-timeline-label .ant-timeline-item-tail {
   left: 20%;
