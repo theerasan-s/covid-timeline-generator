@@ -106,6 +106,7 @@ const DataForm = ({ form, onSubmit, covidData }: Props) => {
                 showTime={{ format: 'HH:mm' }}
                 format={'MM/DD/YYYY HH:mm'}
                 style={{ width: '100%', color: 'white' }}
+                inputReadOnly
               />
             </Form.Item>
           </Col>
