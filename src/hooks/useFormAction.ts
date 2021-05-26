@@ -168,6 +168,7 @@ export default function useFormAction(covidData: covidData) {
     }
 
     newData.timeline = newTimeline
+    localStorage.setItem('covid-generator', JSON.stringify(newData))
     return setTimeline(newData)
   }
 

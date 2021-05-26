@@ -1,5 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
+import 'regenerator-runtime'
+
 import {
   mockTimeline,
   mockSortByTimeTimeline,
@@ -185,5 +187,23 @@ describe('useFormAction', () => {
       ],
     })
     expect(resetFieldSpy).toBeCalledTimes(1)
+  })
+
+  it('should delete timeline correctly', async () => {
+    const { result } = renderHook(() =>
+      useFormAction(null as unknown as covidData)
+    )
+
+    await act(async () => {
+      await result.current.submitData()
+      await result.current.onDelete('25/05/2021', '18:00')
+    })
+
+    expect(result.current.generatedTimeline).toStrictEqual({
+      gender: 'ชาย',
+      age: '24',
+      job: 'tester',
+      timeline: [],
+    })
   })
 })
