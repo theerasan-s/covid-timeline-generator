@@ -28,7 +28,7 @@ const DataForm = ({ form, onSubmit, covidData }: Props) => {
     <Form layout="vertical" form={form} onFinish={onSubmit}>
       <Container>
         <Row>
-          <FormTitle>ข้อมูลผู้ป่วย</FormTitle>
+          <FormTitle data-testid="patient">ข้อมูลผู้ป่วย</FormTitle>
         </Row>
         <Row gutter={[16, 8]}>
           <Col span={10}>

@@ -12,6 +12,7 @@ import moment from 'moment'
 import useFormActionType from './useFormAction'
 
 const useFormSpy = jest.fn()
+const resetFieldSpy = jest.fn()
 
 const useFormReturnValue = {
   gender: 'ชาย',
@@ -26,7 +27,9 @@ jest.doMock('antd/lib/form/Form', () => ({
 }))
 
 beforeEach(() => {
-  useFormSpy.mockReturnValue([{ getFieldsValue: () => useFormReturnValue }])
+  useFormSpy.mockReturnValue([
+    { getFieldsValue: () => useFormReturnValue, resetFields: resetFieldSpy },
+  ])
 })
 
 afterEach(() => {
@@ -76,6 +79,7 @@ describe('useFormAction', () => {
         { date: '25/05/2021', action: [{ time: '18:00', event: ['test'] }] },
       ],
     })
+    expect(resetFieldSpy).toBeCalledTimes(1)
   })
 
   it('should add sort new timeline by date correctly', () => {
@@ -88,6 +92,7 @@ describe('useFormAction', () => {
           timeline: moment('2021-05-26 19:00'),
           description: 'test',
         }),
+        resetFields: resetFieldSpy,
       },
     ])
 
@@ -107,6 +112,7 @@ describe('useFormAction', () => {
         { date: '27/05/2021', action: [{ time: '19:00', event: ['test'] }] },
       ],
     })
+    expect(resetFieldSpy).toBeCalledTimes(1)
   })
 
   it('should add sort new timeline by time correctly', () => {
@@ -119,6 +125,7 @@ describe('useFormAction', () => {
           timeline: moment('2021-05-25 19:05'),
           description: 'test',
         }),
+        resetFields: resetFieldSpy,
       },
     ])
 
@@ -143,6 +150,7 @@ describe('useFormAction', () => {
         },
       ],
     })
+    expect(resetFieldSpy).toBeCalledTimes(1)
   })
 
   it('should add sort new event correctly if it already have date and time in the timeline', () => {
@@ -155,6 +163,7 @@ describe('useFormAction', () => {
           timeline: moment('2021-05-25 19:00'),
           description: 'test2',
         }),
+        resetFields: resetFieldSpy,
       },
     ])
 
@@ -175,5 +184,6 @@ describe('useFormAction', () => {
         },
       ],
     })
+    expect(resetFieldSpy).toBeCalledTimes(1)
   })
 })

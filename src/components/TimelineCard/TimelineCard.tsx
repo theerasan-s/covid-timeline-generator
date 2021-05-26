@@ -19,7 +19,7 @@ import {
 
 type Props = {
   timelineData: covidData
-  onDelete: (date: string, time: string) => () => void
+  onDelete: (date: string, time: string) => void
 }
 
 const TimelineCard = ({ timelineData, onDelete }: Props) => {
@@ -93,7 +93,8 @@ const TimelineCard = ({ timelineData, onDelete }: Props) => {
                         shape="circle"
                         icon={<CloseOutlined />}
                         size="small"
-                        onClick={onDelete(timeline.date, action.time)}
+                        onClick={() => onDelete(timeline.date, action.time)}
+                        data-testid={`delete ${timeline.date} ${action.time}`}
                       />
                     </EventBlock>
                   ))}

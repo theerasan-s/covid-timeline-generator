@@ -56,7 +56,6 @@ export default function useFormAction(covidData: covidData) {
       (timeline) => timeline.date === date
     )
 
-    // date not found
     if (timelineIndex < 0) {
       const timeline = {
         date: date,
@@ -94,7 +93,6 @@ export default function useFormAction(covidData: covidData) {
     const foundActionIndex = foundDate.action.findIndex(
       (action) => action.time === time
     )
-    // time not found
 
     if (foundActionIndex < 0) {
       const newActionObject: action = {
@@ -147,7 +145,7 @@ export default function useFormAction(covidData: covidData) {
     return form.resetFields()
   }
 
-  const onDelete = (timelineDate: string, time: string) => () => {
+  const onDelete = (timelineDate: string, time: string) => {
     const newTimeline = [...generatedTimeline.timeline]
     const newData = { ...generatedTimeline }
 
